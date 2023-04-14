@@ -34,6 +34,7 @@ def chk_msg(user_msg):
     response('Hello!', ['hello', 'hi', 'hey', 'sup', 'hola'], single_response = True)
     response('I\'m doing fine, and you?', ['how', 'are', 'you', 'doing'], required_words=['how'])
     response('You\'re welcome!', ['thank', 'thanks'], single_response = True)
+    response('Let me check', ['balance','history','details'], single_response = True)
 
     best_match = max(highest_prob_list , key = highest_prob_list.get)
     print(highest_prob_list)
