@@ -1,5 +1,5 @@
 import re
-
+import mysql.connector
 
 def msg_prob(user_inp , recognised_words , single_resp = False , required_words = []):
     msg_certainity = 0
@@ -48,6 +48,17 @@ def bot_responses(user):
     user_msg = re.split(r'\s+|[,;?!.-]\s*', user.lower())
     response = chk_msg(user_msg)
     return response
+
+
+# fetching from database
+mydb = mysql.connector.connect(host = "localhost", user = "root", password = "sharma00", database = "banking")
+cursor = mydb.cursor()
+cursor.execute("select * from users;")
+result = cursor.fetchall()
+print("Bank Customers are: ", '\n')
+for row in result:
+    print(row[1])
+print('\n');
 
 # testing response system
 while True:
