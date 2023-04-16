@@ -9,9 +9,9 @@ class DB:
             database = "banking"
         )
 
-    def fetch_data(self , p):
+    def fetch_data(self , p_id):
         cursor = self.mydb.cursor()
-        cursor.execute(f"select * from usersb where id = {p.id}")
+        cursor.execute(f"select * from users where id = {p_id}")
         result = cursor.fetchall()
         # for i in result:
         #     print(i)
@@ -19,26 +19,39 @@ class DB:
         return result
 
 class Acc_Detail:
+    __db = DB()
+    # data = __db.fetch_data(id)
+
     def __init__(self , name ,id):
         self.id = id
         self.name = name
 
+
     def __str__(self):
         return f"Name : {self.name} \nId : {self.id}"
 
+
     def validate_login(self , pas):
-        db = DB()
-        res = db.fetch_data(self)
-        if res[0][4] != pas:
-            print("Invalid password")
+        res = self.__db.fetch_data(self.id)
+        if res[0][1] != pas:
+            return False
         else:
-            print(res)
+            return True
 
 
+    def chk_balance(self):
+        data = self.__db.fetch_data(self.id)
+        return data[0][11]
 
-name , id = input("Enter your name and user id: ").split()
-p1 = Acc_Detail(name , id)
+    def acc_act(self):
+        data = self.__db.fetch_data(self.id)
+        return data[0][10]
 
-passw = input("Enter your password : ")
-p1.validate_login(passw)
+    def acc_stat(self):
+        data = self.__db.fetch_data(self.id)
+        return data[0][9]
+
+    def acc_type(self):
+        data = self.__db.fetch_data(self.id)
+        return data[0][8]
 
