@@ -1,5 +1,15 @@
 import re
+import details
+import random
 import mysql.connector
+
+def unknown():
+    response = ["Could you please re-phrase that? ",
+                "...",
+                "What does that mean?",
+                "Sorry for inconvinience but i was not able to understand \n      what do you want to say can you repeat"][
+        random.randrange(4)]
+    return response
 
 def msg_prob(user_inp , recognised_words , single_resp = False , required_words = []):
     msg_certainity = 0
@@ -33,14 +43,21 @@ def chk_msg(user_msg):
     #Responses
     response('Hello!', ['hello', 'hi', 'hey', 'sup', 'hola'], single_response = True)
     response('I\'m doing fine, and you?', ['how', 'are', 'you', 'doing'], required_words=['how'])
+    response('You\'re welcome!\n      How can I help you today', ['thank', 'thanks'], single_response = True)
+    response(f"Sure , Your current balance is {p1.chk_balance()} Rs",['can' , 'check' , 'my' ,'balance'] , required_words = ['my' , 'balance'] )
+    response(f"Account status = {p1.acc_stat()},\n      Account activation = {p1.acc_act()},\n      Account type = {p1.acc_type()}\n      To know more you can contact us on Toll free number :- 1800-564-9548" ,[ 'some','provide','details', 'information' , 'my' , 'account'] , required_words=['details' , 'information'])
+    response(f"Account status = {p1.acc_stat()}" , ['what' , 'status' , 'account'] , required_words=['status' , 'account'])
+    response(f"Account activation date = {p1.acc_act()}" , ['what','is','activation' , 'date','acocount'] , required_words=['activation' , 'what'])
+    response(f"Please check this out on our web https://abcbank.com" , ['can','you','about','loans','your','bank','provide'] , required_words=['loans'])
+    response(f"You can contact us on Toll free number :- 1800-564-9548" , ['can','provide','your' , 'customer care'] , required_words=['customer care'])
     response('You\'re welcome!', ['thank', 'thanks'], single_response = True)
     response('Let me check', ['balance','history','details'], single_response = True)
 
     best_match = max(highest_prob_list , key = highest_prob_list.get)
-    print(highest_prob_list)
+    # print(highest_prob_list)
 
-    #return unknown() if highest_prob_list[best_match] < 1 else best_match
-    return best_match 
+    return unknown() if highest_prob_list[best_match] < 1 else best_match
+    # return best_match 
     
 
 
@@ -51,15 +68,23 @@ def bot_responses(user):
 
 
 # fetching from database
-mydb = mysql.connector.connect(host = "localhost", user = "root", password = "sharma00", database = "banking")
-cursor = mydb.cursor()
-cursor.execute("select * from users;")
-result = cursor.fetchall()
-print("Bank Customers are: ", '\n')
-for row in result:
-    print(row[1])
-print('\n');
+# mydb = mysql.connector.connect(host = "localhost", user = "root", password = "sharma00", database = "banking")
+# cursor = mydb.cursor()
+# cursor.execute("select * from users;")
+# result = cursor.fetchall()
+# print("Bank Customers are: ", '\n')
+# for row in result:
+#    print(row[1])
+# print('\n');
 
 # testing response system
-while True:
-    print("Bot : " + bot_responses(input("You : ")))
+
+name , id = input("Enter your name and user id: ").split()
+p1 = details.Acc_Detail(name , id)
+passw = input("Enter your password : ")
+
+if p1.validate_login(passw):
+    while True:
+        print("Bot : " + bot_responses(input(f"\n{name} : ")))
+else:
+    print("unable to login , please check your password")
