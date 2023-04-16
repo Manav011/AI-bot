@@ -1,7 +1,7 @@
 import re
 import details
 import random
-
+import mysql.connector
 
 def unknown():
     response = ["Could you please re-phrase that? ",
@@ -50,6 +50,8 @@ def chk_msg(user_msg):
     response(f"Account activation date = {p1.acc_act()}" , ['what','is','activation' , 'date','acocount'] , required_words=['activation' , 'what'])
     response(f"Please check this out on our web https://abcbank.com" , ['can','you','about','loans','your','bank','provide'] , required_words=['loans'])
     response(f"You can contact us on Toll free number :- 1800-564-9548" , ['can','provide','your' , 'customer care'] , required_words=['customer care'])
+    response('You\'re welcome!', ['thank', 'thanks'], single_response = True)
+    response('Let me check', ['balance','history','details'], single_response = True)
 
     best_match = max(highest_prob_list , key = highest_prob_list.get)
     # print(highest_prob_list)
@@ -65,6 +67,15 @@ def bot_responses(user):
     return response
 
 
+# fetching from database
+# mydb = mysql.connector.connect(host = "localhost", user = "root", password = "sharma00", database = "banking")
+# cursor = mydb.cursor()
+# cursor.execute("select * from users;")
+# result = cursor.fetchall()
+# print("Bank Customers are: ", '\n')
+# for row in result:
+#    print(row[1])
+# print('\n');
 
 # testing response system
 
