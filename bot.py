@@ -73,16 +73,6 @@ def bot_responses(user):
     return response
 
 
-# fetching from database
-# mydb = mysql.connector.connect(host = "localhost", user = "root", password = "sharma00", database = "banking")
-# cursor = mydb.cursor()
-# cursor.execute("select * from users;")
-# result = cursor.fetchall()
-# print("Bank Customers are: ", '\n')
-# for row in result:
-#    print(row[1])
-# print('\n');
-
 name , id = input("Enter your name and user id: ").split()
 p1 = details.Acc_Detail(name , id)
 passw = input("Enter your password : ")
