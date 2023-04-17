@@ -1,15 +1,10 @@
 import re
 import details
 import random
-<<<<<<< HEAD
 
 # when the highest probability of any response will not be greater than 1
 # means it will not be matching with any list of words that are stored then this function will be called 
 # signifying that data is not present   
-=======
-import mysql.connector
-
->>>>>>> f40b0cb02267118445e2b7519ec9ca4811ce2101
 def unknown():
     response = ["Could you please re-phrase that? ",
                 "...",
@@ -61,14 +56,8 @@ def chk_msg(user_msg):
     response(f"Account status = {p1.acc_stat()}" , ['what' , 'status' , 'account'] , required_words=['status' , 'account'])
     response(f"Account activation date = {p1.acc_act()}" , ['what','is','activation' , 'date','acocount'] , required_words=['activation' , 'what'])
     response(f"Please check this out on our web https://abcbank.com" , ['can','you','about','loans','your','bank','provide'] , required_words=['loans'])
-<<<<<<< HEAD
     response(f"You can contact us on Toll free number :- 1800-564-9548" , ['can','provide','me','your','customer care'] , required_words=['customer care'])
     response(f"You can call us anytime on :- 1800-564-9548" , ['how' , 'connect','contact', 'with','your', 'customer care'] , required_words = ['customer care'])
-=======
-    response(f"You can contact us on Toll free number :- 1800-564-9548" , ['can','provide','your' , 'customer care'] , required_words=['customer care'])
-    response('You\'re welcome!', ['thank', 'thanks'], single_response = True)
-    response('Let me check', ['balance','history','details'], single_response = True)
->>>>>>> f40b0cb02267118445e2b7519ec9ca4811ce2101
 
     best_match = max(highest_prob_list , key = highest_prob_list.get)
     print(highest_prob_list)
