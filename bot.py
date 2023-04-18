@@ -7,7 +7,7 @@ import random
 # signifying that data is not present   
 def unknown():
     response = ["Could you please re-phrase that? ",
-                "...",
+                "I'm sorry, I didn't quite catch that. \n      Could you please repeat it?",
                 "What does that mean?",
                 "Sorry for inconvinience but i was not able to understand \n      what do you want to say"][
         random.randrange(4)]
@@ -50,7 +50,7 @@ def chk_msg(user_msg):
     # Responses
     response('Hello! How can I help you ?', ['hello', 'hi', 'hey', 'sup', 'hola' , 'helo'], single_response = True)
     response('I\'m doing fine, and you?', ['how', 'are', 'you', 'doing'], required_words=['how','you'])
-    response('You\'re welcome!', ['thank', 'thanks'], single_response = True)
+    response('You\'re welcome! If you need any more assistance in the future, feel free to ask. I\'m here to help!', ['thank', 'thanks'], single_response = True)
     response(f"Sure , Your current balance is {p1.chk_balance()} Rs",['can' , 'check' , 'my' ,'balance'] , required_words = ['my' , 'balance'] )
     response(f"Account status = {p1.acc_stat()},\n      Account activation = {p1.acc_act()},\n      Account type = {p1.acc_type()}\n      To know more you can contact us on Toll free number :- 1800-564-9548" ,[ 'some','provide','details', 'information' , 'my' , 'account'] , required_words=['details' , 'information'])
     response(f"Account status = {p1.acc_stat()}" , ['what' , 'status' , 'account'] , required_words=['status' , 'account'])
