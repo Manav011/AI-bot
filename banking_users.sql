@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `passw` varchar(50) NOT NULL,
   `name` varchar(100) NOT NULL,
   `acc_no` varchar(20) NOT NULL,
   `mobile_no` varchar(10) NOT NULL,
@@ -47,7 +48,16 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Raju Reddy','150325482515487','9854261456','raju@gmail.com','1986-04-11','7-81, Chennai, Seruseri, Tamilnadu','Savings','Active','2003-04-26',10200),(2,'Vamsi Krishna','554418556692145','9854261463','vamsi@gmail.com','1990-04-11','3-71, Lucknow, Uttar Pradesh','Current','Inactive','2005-02-05',54800),(3,'Naveen Reddy','883091452100564','9854261496','naveen@gmail.com','1985-03-14','5-81, MG Road, Bangalore, Karnataka','Savings','Active','2001-09-10',540800),(4,'Raghava Rao','889947556632115','9854261412','raghava@gmail.com','1985-09-21','4-81, Iroli, Mumbai, Maharashtra','Fixed Deposit','Active','2001-09-10',9800),(5,'Harsha Vardhan','221548869547521','9854261445','harsha@gmail.com','1992-10-11','6-81, Street1, Ahemadabad, Gujarat','Current','Active','2005-05-12',103900),(6,'Sapna Chowdary','7758442010336201','9898521010','sapna@gmail.com','1998-06-24','9-21, Sholinganur, Chennai, Tamilnadu','Current','Suspended','2007-08-04',1900),(7,'Simran Sharma','556488953212662','8841056131','simran@gmail.com','2000-09-30','6-21, Ambedkar Street, Hyderabad, Andhra Pradesh','Savings','Active','2010-07-12',50000),(8,'Arun Khan','6620152485209630','7745962210','arun@gmail.com','2001-10-15','5-42, New Street, Saharanpur, Uttar Pradesh','Savings','Active','2011-07-08',60500),(9,'Rehan Dhawan','965478542100152','9962116320','rehan@gmail.com','1990-06-20','81, Mall Road, Shimla, Himachal Pradesh','Current','Active','2004-11-09',600580),(10,'Shikha Aggarwal','775469326544521','6678542189','shikha@gmail.com','1988-12-16','4, Street5 , Rishikesh, Uttarakhand','Savings','Active','2001-06-15',810900);
+INSERT INTO `users` VALUES (1,'abcdef','Raju Reddy','150325482515487','9854261456','raju@gmail.com','1986-04-11','7-81, Chennai, Seruseri, Tamilnadu','Savings','Active','2003-04-26',10200),
+(2,'asdfghjkl','Vamsi Krishna','554418556692145','9854261463','vamsi@gmail.com','1990-04-11','3-71, Lucknow, Uttar Pradesh','Current','Inactive','2005-02-05',54800),
+(3,'123456','Naveen Reddy','883091452100564','9854261496','naveen@gmail.com','1985-03-14','5-81, MG Road, Bangalore, Karnataka','Savings','Active','2001-09-10',540800),
+(4,'000000','Raghava Rao','889947556632115','9854261412','raghava@gmail.com','1985-09-21','4-81, Iroli, Mumbai, Maharashtra','Fixed Deposit','Active','2001-09-10',9800),
+(5,'654321','Harsha Vardhan','221548869547521','9854261445','harsha@gmail.com','1992-10-11','6-81, Street1, Ahemadabad, Gujarat','Current','Active','2005-05-12',103900),
+(6,'963852','Sapna Chowdary','7758442010336201','9898521010','sapna@gmail.com','1998-06-24','9-21, Sholinganur, Chennai, Tamilnadu','Current','Suspended','2007-08-04',1900),
+(7,'123123','Simran Sharma','556488953212662','8841056131','simran@gmail.com','2000-09-30','6-21, Ambedkar Street, Hyderabad, Andhra Pradesh','Savings','Active','2010-07-12',50000),
+(8,'159753','Arun Khan','6620152485209630','7745962210','arun@gmail.com','2001-10-15','5-42, New Street, Saharanpur, Uttar Pradesh','Savings','Active','2011-07-08',60500),
+(9,'zxcvbnm','Rehan Dhawan','965478542100152','9962116320','rehan@gmail.com','1990-06-20','81, Mall Road, Shimla, Himachal Pradesh','Current','Active','2004-11-09',600580),
+(10,'qwertyuiop','Shikha Aggarwal','775469326544521','6678542189','shikha@gmail.com','1988-12-16','4, Street5 , Rishikesh, Uttarakhand','Savings','Active','2001-06-15',810900);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
