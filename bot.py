@@ -3,6 +3,7 @@ import details
 import random
 import tkinter as tk
 import sys
+import time
 
 # when the highest probability of any response will not be greater than 1
 # means it will not be matching with any list of words that are stored then this function will be called 
@@ -57,8 +58,8 @@ def chk_msg(user_msg):
     response(f"Account status = {p1.acc_stat()},\n      Account activation = {p1.acc_act()},\n      Account type = {p1.acc_type()}\n      To know more you can contact us on Toll free number :- 1800-564-9548" ,[ 'some','provide','details', 'information' , 'my' , 'account'] , required_words=['details' , 'information'])
     response(f"Account status = {p1.acc_stat()}" , ['what' , 'status' , 'account'] , required_words=['status' , 'account'])
     response(f"Account activation date = {p1.acc_act()}" , ['what','is','activation' , 'date','acocount'] , required_words=['activation' , 'what'])
-    response(f"Please check this out on our web https://abcbank.com" , ['can','you','about','loans','your','bank','provide'] , required_words=['loans'])
-    response(f"You can contact us on Toll free number :- 1800-564-9548" , ['can','provide','me','your','customer care'] , required_words=['customer care'])
+    response(f"Please check this out on our web \n     https://abcbank.com" , ['can','you','about','loans','your','bank','provide'] , required_words=['loans'])
+    response(f"You can contact us on Toll free number \n     :- 1800-564-9548" , ['can','provide','me','your','customer care'] , required_words=['customer care'])
     response(f"You can call us anytime on :- 1800-564-9548" , ['how' , 'connect','contact', 'with','your', 'customer care'] , required_words = ['customer care'])
 
     best_match = max(highest_prob_list , key = highest_prob_list.get)
@@ -79,15 +80,16 @@ def login_window():
     screen.title("login")
     screen.geometry("450x300")
     screen.resizable(False,False)
+    screen.configure(bg = "white")
     name = tk.StringVar()
     id = tk.StringVar()
     global passw
     passw = tk.StringVar()
 
-    tk.Label(screen,text="Login here",font="Times 20",fg="black").pack(fill="both")
-    tk.Label(screen , text="Name" , font="20").place(x = 45 , y = 50)
-    tk.Label(screen,text="Id",font="20").place(x=45,y=100) 
-    tk.Label(screen,text="Password",font="20").place(x=45,y=150)
+    tk.Label(screen,text="Login here",font="Times 20",fg="black",bg = "white").pack(fill="both")
+    tk.Label(screen , text="Name" , font="20",bg = "white").place(x = 45 , y = 50)
+    tk.Label(screen,text="Id",font="20",bg = "white").place(x=45,y=100) 
+    tk.Label(screen,text="Password",font="20",bg = "white").place(x=45,y=150)
 
     name_loginenter = tk.Entry(screen , font="10",bd="4",textvariable = name)
     name_loginenter.place(x=205 , y = 50)
@@ -103,11 +105,15 @@ def login_window():
         global p1
         p1 = details.Acc_Detail(name.get() , id.get())
         if p1.validate_login(passw.get()) == False:
-            print("unable to login , please check your password")
+            # tk.Label(screen , text = "Unable to login , please check your password!!",font = "Times 15",fg="red",bg = "white").place(x = 45,y = 210)
+            print("Unable to login")
             sys.exit(0)
-        
+        # else :
+            # tk.Label(screen , text = "Successful Login",font = "Times 15",fg="green",bg = "white").place(x = 55,y = 210)
         screen.destroy()
+        
 
+    
     tk.Button(screen, text="Login",font="50",bg="blue",fg="white",command=login).place(x=185,y=250)
     screen.mainloop()
 
@@ -128,14 +134,14 @@ root.title("Chatbot")
 
 frame = tk.Frame(root)
 
-tk.Label(root,text = "XYZ Bank",font="Times 20",fg="black").pack(fill="both")
+tk.Label(root,text = "ABC Bank",font="Times 20",fg="black").pack(fill="both")
 scrollbar = tk.Scrollbar(frame)
 
 text = tk.Text(frame, height = 25, width = 55, yscrollcommand=scrollbar.set)
 scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 text.pack(side=tk.LEFT, fill=tk.BOTH)
 frame.pack()
-text.insert(tk.END,f"Bot: Hello! How can I help you {p1.name}?\n")
+text.insert(tk.END,f"Bot: Hello! How can I help you {p1.name}?\n\n")
 
 entry = tk.Entry(root, width = 60)
 entry.pack(side = tk.LEFT, padx=10, pady=10)

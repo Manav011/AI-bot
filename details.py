@@ -32,10 +32,14 @@ class Acc_Detail:
     # checking the password and validating login if correct
     def validate_login(self , pas):
         res = self.__db.fetch_data(self.id)
-        if res[0][1] != pas:
+        try :
+            if res[0][1] != pas:
+                return False
+            else:
+                return True
+        except IndexError:
             return False
-        else:
-            return True
+
 
     # returning balance
     def chk_balance(self):
