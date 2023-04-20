@@ -72,13 +72,73 @@ def bot_responses(user):
     response = chk_msg(user_msg)
     return response
 
-name , id = input("Enter your name and user id: ").split()
-p1 = details.Acc_Detail(name , id)
-passw = input("Enter your password : ")
+def login_window():
+    screen = tk.Tk()
+    screen.title("login")
+    screen.geometry("450x300")
+    screen.resizable(False,False)
+    name = tk.StringVar()
+    id = tk.StringVar()
+    global passw
+    passw = tk.StringVar()
 
-# validating login
-if p1.validate_login(passw):
-    while True:
-        print("Bot : " + bot_responses(input(f"\n{name} : ")))
-else:
-    print("unable to login , please check your password")
+    tk.Label(screen,text="Login here",font="Times 20",fg="black").pack(fill="both")
+    tk.Label(screen , text="Name" , font="20").place(x = 45 , y = 50)
+    tk.Label(screen,text="Id",font="20").place(x=45,y=100) 
+    tk.Label(screen,text="Password",font="20").place(x=45,y=150)
+
+    name_loginenter = tk.Entry(screen , font="10",bd="4",textvariable = name)
+    name_loginenter.place(x=205 , y = 50)
+
+    regno_loginenter=tk.Entry(screen,font="10",bd="4",textvariable = id)
+    regno_loginenter.place(x=205,y=100)
+
+    pass_loginenter=tk.Entry(screen,font="10",bd="4",textvariable = passw)
+    pass_loginenter.place(x=205,y=150)
+
+
+    def login():
+        global p1
+        p1 = details.Acc_Detail(name.get() , id.get())
+        if p1.validate_login(passw.get()) == False:
+            print("unable to login , please check your password")
+            sys.exit(0)
+        
+        screen.destroy()
+
+    tk.Button(screen, text="Login",font="50",bg="blue",fg="white",command=login).place(x=185,y=250)
+    screen.mainloop()
+
+
+    
+
+def chatbot_response():
+    message = entry.get()
+    response = bot_responses(message)
+    text.insert(tk.END, f"{p1.name}: " + message + "\n")
+    text.insert(tk.END, "Bot: " + response + "\n")
+    entry.delete(0, tk.END)
+
+login_window()
+
+root = tk.Tk()
+root.title("Chatbot")
+
+frame = tk.Frame(root)
+
+tk.Label(root,text = "XYZ Bank",font="Times 20",fg="black").pack(fill="both")
+scrollbar = tk.Scrollbar(frame)
+
+text = tk.Text(frame, height = 25, width = 55, yscrollcommand=scrollbar.set)
+scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+text.pack(side=tk.LEFT, fill=tk.BOTH)
+frame.pack()
+text.insert(tk.END,f"Bot: Hello! How can I help you {p1.name}?\n")
+
+entry = tk.Entry(root, width = 60)
+entry.pack(side = tk.LEFT, padx=10, pady=10)
+
+button = tk.Button(root, text="Send",bg="green",fg="white" ,command = chatbot_response)
+button.pack(side = tk.LEFT, padx=10, pady=10)
+
+root.mainloop()
