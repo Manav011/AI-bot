@@ -13,7 +13,7 @@ class DB:
     # fetching the data of particular user
     def fetch_data(self , p_id):
         cursor = self.mydb.cursor()
-        cursor.execute(f"select * from users where id = {p_id}")
+        cursor.execute(f"select * from users where id = {p_id};")
         
         result = cursor.fetchall()
         return result
